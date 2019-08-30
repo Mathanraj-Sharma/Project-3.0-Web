@@ -1,7 +1,7 @@
 from django.db import models
 
 # Create your models here.
-class reviews(models.Model):
+class review(models.Model):
     user_id = models.IntegerField()
     queAndAnsr = models.TextField()
     geo_tag = models.TextField()
@@ -10,4 +10,4 @@ class reviews(models.Model):
     modified_at = models.DateTimeField(auto_now=True)
 
     class Meta:
-        db_table = 'reviews'
+        db_table = 'review'

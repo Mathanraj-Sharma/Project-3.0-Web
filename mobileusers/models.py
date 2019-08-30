@@ -2,7 +2,7 @@ from django.db import models
 
 # Create your models here.
 
-class mobileusers(models.Model):
+class mobileuser(models.Model):
     nic = models.CharField(max_length=12, null = True)
     nickname = models.CharField(max_length=300)
     email = models.CharField(max_length=150, primary_key=True)
