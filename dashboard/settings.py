@@ -34,6 +34,7 @@ INSTALLED_APPS = [
     'mobileusers.apps.MobileusersConfig',
     'reviews.apps.ReviewsConfig',
     'complaint.apps.ComplaintConfig',
+    'question.apps.QuestionConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

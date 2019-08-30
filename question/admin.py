@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import review
+from .models import question
 
 # Register your models here.
-admin.site.register(review)
+admin.site.register(question)
