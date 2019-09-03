@@ -15,9 +15,14 @@ def login(request):
 
         if user is not None:
             auth.login(request, user)
-            return redirect('/')
+            return redirect('index')
         else: 
-            messages.info(request, 'Invalid Credentials')
-            return redirect('login')
+            #messages.info(request, 'Invalid Credentials')
+            return redirect('/')
     else:
         return render(request, "login.html")
+
+
+def logout(request):
+    auth.logout(request)
+    return redirect('/')
