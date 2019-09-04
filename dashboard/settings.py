@@ -81,7 +81,7 @@ WSGI_APPLICATION = 'dashboard.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'feedback',
+        'NAME': 'project3',
         'USER': 'root',
         'PASSWORD': 'Data+0728-',
         'HOST': '127.0.0.1'
