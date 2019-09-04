@@ -14,4 +14,4 @@ class ComplaintAdmin(admin.ModelAdmin):
         return diff.days
         
 # Register your models here.
-admin.site.register(complaint)
+admin.site.register(complaint, ComplaintAdmin)
