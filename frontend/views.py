@@ -4,6 +4,7 @@ from reviews.models import review
 from complaint.models import complaint
 from question.models import question
 from mobileusers.models import mobileuser
+import re
 
 # Create your views here.
 
@@ -20,12 +21,20 @@ def login(request):
         complaint_count = complaint.objects.all().count()
         question_count = question.objects.all().count()
         mobileusers_count = mobileuser.objects.all().count()
-
+        
+        review_geo_list = review.objects.values('geo_tag')
+        markers = []
+        for i  in review_geo_list:
+            y = i.get('geo_tag')
+            markers.append([float(s) for s in re.findall(r"[-+]?\d*\.\d+|\d+", y)])
+        markers = [list(marker) for marker in set(tuple(row) for row in markers)]
+       
         context = {
             'review_count': review_count,
             'complaint_count': complaint_count,
             'question_count': question_count,
-            'mobileusers_count': mobileusers_count
+            'mobileusers_count': mobileusers_count, 
+            'markers': markers
         }
         
         if user is not None:
