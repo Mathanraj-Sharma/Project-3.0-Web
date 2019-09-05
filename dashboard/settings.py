@@ -35,6 +35,7 @@ INSTALLED_APPS = [
     'reviews.apps.ReviewsConfig',
     'complaint.apps.ComplaintConfig',
     'question.apps.QuestionConfig',
+    'leaflet',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -132,3 +133,8 @@ STATICFILES_DIRS = [
 ]
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'assets')
+
+LEAFLET_CONFIG = {
+    'DEFAULT_CENTER': (9.6615, 80.0255),
+    'DEFAULT_ZOOM': 10
+}

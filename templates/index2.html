@@ -1,7 +1,10 @@
 {% load static %}
+{% load leaflet_tags %}
 <!DOCTYPE html>
 <html>
 <head>
+  {% leaflet_js %}
+  {% leaflet_css %}
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>AdminLTE 2 | Dashboard</title>
@@ -753,7 +756,8 @@
                 <div class="col-md-9 col-sm-8">
                   <div class="pad">
                     <!-- Map will be created here -->
-                    <div id="world-map-markers" style="height: 325px;"></div>
+                    <!--<div id="world-map-markers" style="height: 325px;"></div>-->
+                    {% leaflet_map "yourmap" %}
                   </div>
                 </div>
                 <!-- /.col -->
