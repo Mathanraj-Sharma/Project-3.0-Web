@@ -1,3 +1,7 @@
 {
+<<<<<<< HEAD
     "python.pythonPath": "/home/user/anaconda3/envs/feedback/bin/python"
+=======
+    "python.pythonPath": "C:\\Users\\User\\envs\\test\\Scripts\\python.exe"
+>>>>>>> b40df385bd293c28113b6dd85ff82901664d2f40
 }

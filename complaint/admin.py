@@ -1,6 +1,9 @@
 from django.contrib import admin
 from .models import complaint
+<<<<<<< HEAD
 from django.utils import timezone
+=======
+>>>>>>> b40df385bd293c28113b6dd85ff82901664d2f40
 
 
 class ComplaintAdmin(admin.ModelAdmin):
@@ -14,4 +17,8 @@ class ComplaintAdmin(admin.ModelAdmin):
         return diff.days
         
 # Register your models here.
+<<<<<<< HEAD
 admin.site.register(complaint, ComplaintAdmin)
+=======
+admin.site.register(complaint)
+>>>>>>> b40df385bd293c28113b6dd85ff82901664d2f40

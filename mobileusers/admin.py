@@ -1,6 +1,7 @@
 from django.contrib import admin
 from .models import mobileuser
 
+<<<<<<< HEAD
 
 class MobileUserAdmin(admin.ModelAdmin):
     list_display = ('nic','email','nickname','phoneNo','image','created_at','modified_at')
@@ -17,3 +18,7 @@ class MobileUserAdmin(admin.ModelAdmin):
    
 
 admin.site.register(mobileuser,MobileUserAdmin)
+=======
+# Register your models here.
+admin.site.register(mobileuser)
+>>>>>>> b40df385bd293c28113b6dd85ff82901664d2f40
