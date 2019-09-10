@@ -4,7 +4,7 @@ from .models import review
 
 # Register your models here.
 class ReviewAdmin(admin.ModelAdmin):
-    list_display = ('id','user_id','queAndAnsr','geo_tag','device_signature','created_at','modified_at','days_since_creation')
+    list_display = ('id','user_id','queAndAnsr','hotel','device_signature','created_at','modified_at','days_since_creation')
     date_hierarchy = 'created_at'
     list_filter = ('created_at','modified_at')
 

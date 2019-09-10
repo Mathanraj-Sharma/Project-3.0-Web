@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     'complaint.apps.ComplaintConfig',
     'question.apps.QuestionConfig',
     'hotel.apps.HotelConfig',
+    'graph.apps.GraphConfig',
     'leaflet',
     'django_mysql',
     'django.contrib.admin',
