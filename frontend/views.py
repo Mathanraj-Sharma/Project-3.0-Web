@@ -4,8 +4,7 @@ from reviews.models import review
 from complaint.models import complaint
 from question.models import question
 from mobileusers.models import mobileuser
-import re, json
-from django.core import serializers
+import re
 
 # Create your views here.
 
@@ -82,6 +81,6 @@ def get_review_score(review):
         else:
             score += 0
 
-    print(f"Score = {score}")
+    #print(f"Score = {score}")
+    return score
 
-    
