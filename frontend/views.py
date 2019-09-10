@@ -4,6 +4,7 @@ from reviews.models import review
 from complaint.models import complaint
 from question.models import question
 from mobileusers.models import mobileuser
+from hotel.models import hotel
 import re
 
 # Create your views here.
@@ -14,12 +15,7 @@ def index(request):
     question_count = question.objects.all().count()
     mobileusers_count = mobileuser.objects.all().count()
         
-    review_geo_list = review.objects.values('geo_tag')
-    markers = []
-    for i  in review_geo_list:
-        y = i.get('geo_tag')
-        markers.append([float(s) for s in re.findall(r"[-+]?\d*\.\d+|\d+", y)])
-    markers = [list(marker) for marker in set(tuple(row) for row in markers)]
+    markers = get_markers()
 
     #get_review_score(review.objects.filter(id=1))
     #get_hotel_reviews(1)
@@ -96,4 +92,18 @@ def get_total_review_score(hotel_id):
     for i in reviews:
         total = total + get_review_score(review.objects.filter(id = i['id']))
 
-    print(total)
+    return total
+
+def get_markers():
+    """
+        This function will return the list of markers for all hotels in review table
+    """
+    hotels = list(set([i['hotel'] for i in review.objects.all().values('hotel')]))
+    markers = []
+    for hotel_id in hotels:
+        lng = float(hotel.objects.filter(id = hotel_id).values('longtitude')[0]['longtitude'])
+        lat = float(hotel.objects.filter(id = hotel_id).values('latitude')[0]['latitude'])
+
+        markers.append([lng, lat])
+    
+    return markers
