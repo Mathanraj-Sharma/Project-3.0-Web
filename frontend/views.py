@@ -21,7 +21,9 @@ def index(request):
         markers.append([float(s) for s in re.findall(r"[-+]?\d*\.\d+|\d+", y)])
     markers = [list(marker) for marker in set(tuple(row) for row in markers)]
 
-    get_review_score(review.objects.filter(id=1))
+    #get_review_score(review.objects.filter(id=1))
+    #get_hotel_reviews(1)
+    get_total_review_score(1)
 
     context = {
         'review_count': review_count,
@@ -84,3 +86,14 @@ def get_review_score(review):
     #print(f"Score = {score}")
     return score
 
+
+def get_total_review_score(hotel_id):
+    """
+        This function gets and hotel id as input and returns total review score
+    """
+    total = 0
+    reviews = review.objects.filter(hotel = hotel_id).values('id')
+    for i in reviews:
+        total = total + get_review_score(review.objects.filter(id = i['id']))
+
+    print(total)
