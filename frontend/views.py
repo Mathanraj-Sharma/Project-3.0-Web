@@ -91,8 +91,12 @@ def get_total_review_score(hotel_id):
     reviews = review.objects.filter(hotel = hotel_id).values('id')
     for i in reviews:
         total = total + get_review_score(review.objects.filter(id = i['id']))
+    
+    expected_total = len(reviews) * 5
+    score = (total/expected_total) * 5
 
-    return total
+    # print(score)
+    return score
 
 def get_markers():
     """
@@ -105,5 +109,5 @@ def get_markers():
         lat = float(hotel.objects.filter(id = hotel_id).values('latitude')[0]['latitude'])
 
         markers.append([lng, lat])
-    
+        
     return markers
