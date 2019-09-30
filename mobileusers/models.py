@@ -1,15 +1,18 @@
 from django.db import models
+from django_forcedfields import TimestampField
 
 # Create your models here.
 
 class mobileuser(models.Model):
-    nic = models.CharField(max_length=12, null = True)
+    google_id = models.CharField(max_length= 30, primary_key= True)
+    email = models.CharField(max_length=250, unique=True)
     nickname = models.CharField(max_length=300)
-    email = models.CharField(max_length=150, primary_key=True)
     phoneNo = models.CharField(max_length=100, null = True)
-    created_at = models.DateTimeField(auto_now_add=True)
-    modified_at = models.DateTimeField(auto_now=True)
     image = models.CharField(max_length = 300, null=True)
+    nic = models.CharField(max_length=12, null = True, unique= True)
+    created_at = TimestampField(auto_now_add=True)
+    updated_at = TimestampField(auto_now=True)
+    
 
     class Meta:
         db_table = 'user'

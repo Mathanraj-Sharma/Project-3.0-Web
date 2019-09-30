@@ -3,7 +3,7 @@ from .models import mobileuser
 
 
 class MobileUserAdmin(admin.ModelAdmin):
-    list_display = ('nic','email','nickname','phoneNo','image','created_at','modified_at')
+    list_display = ('google_id','nic','email','nickname','phoneNo','image','created_at','updated_at')
     search_fields = ['nickname','email']
     #list_per_page
     actions = ('change_email',)

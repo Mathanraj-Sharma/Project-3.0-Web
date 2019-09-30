@@ -25,7 +25,7 @@ def graph(request):
     script, div = components(plot)
 
     
-
+    # doughnut
     s, d = get_total_score_doughnut(1)
 
     context = {
