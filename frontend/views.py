@@ -19,7 +19,7 @@ def index(request):
 
     #get_review_score(review.objects.filter(id=1))
     #get_hotel_reviews(1)
-    # get_total_review_score(1)
+    get_total_review_score(1)
 
     context = {
         'review_count': review_count,
@@ -65,8 +65,8 @@ def get_review_score(review):
     grade_E = ['Worse','Very Bad','No']
 
     score = 0
-    data = review.values('qa')
-    for value in data[0]['qa'].values():
+    data = ast.literal_eval(review.values('qa')[0]['qa'])
+    for value in data:
         temp = value['answer']
         if temp in grade_A:
             score += 5
@@ -79,7 +79,7 @@ def get_review_score(review):
         else:
             score += 0
 
-    #print(f"Score = {score}")
+    # print(f"Score = {score}")
     return score
 
 
@@ -89,13 +89,14 @@ def get_total_review_score(hotel_id):
     """
     total = 0
     reviews = review.objects.filter(hotel = hotel_id).values('id')
+    
     for i in reviews:
         total = total + get_review_score(review.objects.filter(id = i['id']))
-    
-    expected_total = len(reviews) * 5
+       
+    expected_total = len(reviews) * 35
     score = (total/expected_total) * 5
 
-    # print(score)
+    print(score)
     return score
 
 def get_markers():
@@ -103,7 +104,7 @@ def get_markers():
         This function will return the list of markers for all hotels in review table
     """
     hotels = list(set([i['hotel'] for i in review.objects.all().values('hotel')]))
-    print(f'hotels{hotels}')
+    # print(f'hotels{hotels}')
     markers = []
     for hotel_id in hotels:
         # lng = float(hotel.objects.filter(id = hotel_id).values('longtitude')[0]['longtitude'])
