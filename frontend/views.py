@@ -5,7 +5,7 @@ from complaint.models import complaint
 from question.models import question
 from mobileusers.models import mobileuser
 from hotel.models import hotel
-import re
+import re, ast
 
 # Create your views here.
 
@@ -19,7 +19,7 @@ def index(request):
 
     #get_review_score(review.objects.filter(id=1))
     #get_hotel_reviews(1)
-    get_total_review_score(1)
+    # get_total_review_score(1)
 
     context = {
         'review_count': review_count,
@@ -65,8 +65,8 @@ def get_review_score(review):
     grade_E = ['Worse','Very Bad','No']
 
     score = 0
-    data = review.values('queAndAnsr')
-    for value in data[0]['queAndAnsr'].values():
+    data = review.values('qa')
+    for value in data[0]['qa'].values():
         temp = value['answer']
         if temp in grade_A:
             score += 5
@@ -103,11 +103,14 @@ def get_markers():
         This function will return the list of markers for all hotels in review table
     """
     hotels = list(set([i['hotel'] for i in review.objects.all().values('hotel')]))
+    print(f'hotels{hotels}')
     markers = []
     for hotel_id in hotels:
-        lng = float(hotel.objects.filter(id = hotel_id).values('longtitude')[0]['longtitude'])
-        lat = float(hotel.objects.filter(id = hotel_id).values('latitude')[0]['latitude'])
-
+        # lng = float(hotel.objects.filter(id = hotel_id).values('longtitude')[0]['longtitude'])
+        # lat = float(hotel.objects.filter(id = hotel_id).values('latitude')[0]['latitude'])
+        latlng = ast.literal_eval(hotel.objects.filter(id = hotel_id).values('geo_tag')[0]['geo_tag'])
+        lng = latlng['longitude']
+        lat = latlng['latitude']
         markers.append([lng, lat])
         
     return markers
