@@ -6,6 +6,7 @@ from question.models import question
 from mobileusers.models import mobileuser
 from hotel.models import hotel
 import re, ast
+import pandas as pd
 
 # Create your views here.
 
@@ -20,6 +21,7 @@ def index(request):
     #get_review_score(review.objects.filter(id=1))
     #get_hotel_reviews(1)
     get_total_review_score(1)
+    # print()
 
     context = {
         'review_count': review_count,
@@ -96,7 +98,7 @@ def get_total_review_score(hotel_id):
     expected_total = len(reviews) * 35
     score = (total/expected_total) * 5
 
-    print(score)
+    # print(score)
     return score
 
 def get_markers():
@@ -115,3 +117,7 @@ def get_markers():
         markers.append([lng, lat])
         
     return markers
+
+
+
+
