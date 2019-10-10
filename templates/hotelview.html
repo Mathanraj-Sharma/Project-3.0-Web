@@ -1,17 +1,36 @@
 <!DOCTYPE html>
-{% block title %}
-<title>Home</title>
-{% endblock %}
-{% block content %}
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <link href="http://cdn.pydata.org/bokeh/release/bokeh-1.3.4.min.css" rel="stylesheet" type="text/css">
+        <link href="http://cdn.pydata.org/bokeh/release/bokeh-widgets-1.3.4.min.css" rel="stylesheet" type="text/css">
+        <script src="http://cdn.pydata.org/bokeh/release/bokeh-1.3.4.min.js"></script>
+        <script src="http://cdn.pydata.org/bokeh/release/bokeh-widgets-1.3.4.min.js"></script>
+        {{ s | safe }}
+        {{ q_script | safe }}
+    </head>
+    {% block title %}
+    <title>Home</title>
+    {% endblock %}
 
-{% for instance in hotel_detail %}
-    {%if id == instance.id %}
-        <p> {{instance.id }}-<a href='{{ instance.get_absolute_url }}'> {{ instance.hotel_name}}</a></p>
-        Hotel ID : <h1> {{instance.id}} </h1>
-         Hotel Name<h1> {{instance.hotel_name}} </h1>
-        Address: <h1> {{instance.address}} </h1>
+    <body>
+        {% block content %}
 
-    {%endif%}
-{% endfor%}
+        {% for instance in hotel_detail %}
+            {%if id == instance.id %}
+                <p> {{instance.id }}-<a href='{{ instance.get_absolute_url }}'> {{ instance.hotel_name}}</a></p>
+                Hotel ID : <h1> {{instance.id}} </h1>
+                Hotel Name<h1> {{instance.hotel_name}} </h1>
+                Address: <h1> {{instance.address}} </h1>
+        
+            {%endif%}
+        {% endfor%}
 
- {%endblock%}
+        {{ d | safe }}
+        {{ q_div | safe }}
+
+        {%endblock%}
+
+    </body>
+</html>
