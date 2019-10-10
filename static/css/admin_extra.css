@@ -1,0 +1,69 @@
+body {
+
+    background-image:url("../images/Pavilion-Lounge-Bar-hi-res-14-maxi2917.jpg");
+    background-repeat: no-repeat;
+    height: 100%;
+    
+      
+    
+    background-repeat: no-repeat;
+    background-size: cover;
+      
+    
+    
+    
+    }
+h1{
+ background-color:	#800000;
+ color:#fff;
+ padding: 10px 10px;
+ align-content: center; 
+}
+
+#content{
+
+    margin-left: 150px;
+    margin-top:60px;
+    background-color:rgb(255,255,255,0.9); 
+    
+
+}
+
+
+#content-main {
+    
+    background-color:rgb(255,255,255,0.9); 
+    
+}
+.a{
+
+    color:#fff;    
+}
+tbody{
+
+    background-color: #FFDEAD
+}
+
+#header{
+
+    background-color: #800000
+}
+
+
+
+.object-tools a:link, .object-tools a:visited{
+
+    background-color: #191970
+}
+
+#content-related{
+
+   
+    float: right;
+    height:300px; 
+    width:40%;
+    background-color:#E5FFCC
+   
+    
+
+}

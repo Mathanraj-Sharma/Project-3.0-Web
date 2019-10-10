@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+{% block title %}
+<title>Home</title>
+{% endblock %}
+{% block content %}
+
+{% for instance in hotel_detail %}
+    {%if id == instance.id %}
+        <p> {{instance.id }}-<a href='{{ instance.get_absolute_url }}'> {{ instance.hotel_name}}</a></p>
+        Hotel ID : <h1> {{instance.id}} </h1>
+         Hotel Name<h1> {{instance.hotel_name}} </h1>
+        Address: <h1> {{instance.address}} </h1>
+
+    {%endif%}
+{% endfor%}
+
+ {%endblock%}
