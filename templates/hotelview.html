@@ -1,13 +1,28 @@
+{% load leaflet_tags %}
+{% load static %}
 <!DOCTYPE html>
+<html>
     <head>
+        {% leaflet_js %}
+        {% leaflet_css %}
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <!-- jvectormap -->
+        <link rel="stylesheet" href="{% static 'bower_components/jvectormap/jquery-jvectormap.css' %}">   
         <link href="http://cdn.pydata.org/bokeh/release/bokeh-1.3.4.min.css" rel="stylesheet" type="text/css">
         <link href="http://cdn.pydata.org/bokeh/release/bokeh-widgets-1.3.4.min.css" rel="stylesheet" type="text/css">
         <script src="http://cdn.pydata.org/bokeh/release/bokeh-1.3.4.min.js"></script>
         <script src="http://cdn.pydata.org/bokeh/release/bokeh-widgets-1.3.4.min.js"></script>
-        {{ s | safe }}
+        <!-- jvectormap  -->
+        <script src="{% static 'plugins/jvectormap/jquery-jvectormap-1.2.2.min.js' %}"></script>
+        <script src="{% static 'plugins/jvectormap/jquery-jvectormap-world-mill-en.js' %}"></script>
+        <script type="text/javascript">
+            function map_init_basic (map, options) {
+                L.marker({{ marker }}).addTo(map);
+            }
+          </script>
+        {{ overall_script | safe }}
         {{ q_script | safe }}
     </head>
     {% block title %}
@@ -26,8 +41,10 @@
         
             {%endif%}
         {% endfor%}
-
-        {{ d | safe }}
+        <div>
+        {% leaflet_map "yourmap" callback="window.map_init_basic" %}
+        </div>
+        {{ overall_div | safe }}
         {{ q_div | safe }}
 
         {%endblock%}
