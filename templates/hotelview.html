@@ -22,8 +22,9 @@
                 L.marker({{ marker }}).addTo(map);
             }
           </script>
-        {{ overall_script | safe }}
-        {{ q_script | safe }}
+        <!-- {{ overall_script | safe }} -->
+        <!-- {{ q_script | safe }} -->
+        {{ total_script | safe }}
     </head>
     {% block title %}
     <title>Home</title>
@@ -45,7 +46,7 @@
         {% leaflet_map "yourmap" callback="window.map_init_basic" %}
         </div>
         {{ overall_div | safe }}
-        {{ q_div | safe }}
+        {{ questions_div | safe }}
 
         {%endblock%}
 

@@ -15,17 +15,26 @@ def hotel_list_view(request,id):
     hotel_detail = hotel.objects.all()
     hotelspecific = id
     marker = get_marker(id)
+
+    # graph for overall score
     overall_script, overall_div = get_total_score_doughnut(id)
-    q_script, q_div = get_question_pie(id, "How good was the outside environment of the restaurant?")
+
+    # graphs for each questions
+    questions_script, questions_div = get_question_answer_graph(id)
+
+    total_script = overall_script + questions_script
+    
     context = {
         'id': hotelspecific,
         'hotel_detail': hotel_detail,
         'marker' : marker,
-        'overall_script' : overall_script,
         'overall_div' : overall_div,
-        'q_script': q_script,
-        'q_div': q_div
+        'questions_div': questions_div,
+        'total_script' :total_script
+        # 'overall_script' : overall_script,
+        # 'q_div': q_div,
     }
+
     return render(request,'hotelview.html',context)
 
 def get_marker(hotel_id):
@@ -38,3 +47,25 @@ def get_marker(hotel_id):
     marker.append(latlng['latitude'])
         
     return marker
+
+
+def get_question_answer_graph(hotel_id):
+    """
+    this function will get a hotel_id as an input and return pie graphs for all
+    questions and answers
+    """
+    questions_temp = [
+        "How Often Do You Dine with Us?",
+        "How good was the outside environment of the restaurant?",
+        "What Did You Like Best About Our Food and Services?",
+        "How Quick or Adequate Was the Speed of Service?"
+    ]
+
+    questions_script = ''
+    questions_div = ''
+    for q in questions_temp:
+        q_script, q_div = get_question_pie(hotel_id, q)
+        questions_script = questions_script + q_script
+        questions_div = questions_div + q_div
+
+    return [questions_script, questions_div]
