@@ -13,4 +13,4 @@ class complaint(models.Model):
     image = models.CharField(max_length = 300, null=True)
 
     class Meta:
-        db_table = 'complaint'
+        db_table = 'complaints'

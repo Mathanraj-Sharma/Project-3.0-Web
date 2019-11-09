@@ -2,53 +2,89 @@
 {% load static %}
 <!DOCTYPE html>
 <html>
-    <head>
-        {% leaflet_js %}
-        {% leaflet_css %}
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <!-- jvectormap -->
-        <link rel="stylesheet" href="{% static 'bower_components/jvectormap/jquery-jvectormap.css' %}">   
-        <link href="http://cdn.pydata.org/bokeh/release/bokeh-1.3.4.min.css" rel="stylesheet" type="text/css">
-        <link href="http://cdn.pydata.org/bokeh/release/bokeh-widgets-1.3.4.min.css" rel="stylesheet" type="text/css">
-        <script src="http://cdn.pydata.org/bokeh/release/bokeh-1.3.4.min.js"></script>
-        <script src="http://cdn.pydata.org/bokeh/release/bokeh-widgets-1.3.4.min.js"></script>
-        <!-- jvectormap  -->
-        <script src="{% static 'plugins/jvectormap/jquery-jvectormap-1.2.2.min.js' %}"></script>
-        <script src="{% static 'plugins/jvectormap/jquery-jvectormap-world-mill-en.js' %}"></script>
-        <script type="text/javascript">
-            function map_init_basic (map, options) {
-                L.marker({{ marker }}).addTo(map);
-            }
-          </script>
-        <!-- {{ overall_script | safe }} -->
-        <!-- {{ q_script | safe }} -->
-        {{ total_script | safe }}
-    </head>
-    {% block title %}
-    <title>Home</title>
-    {% endblock %}
 
-    <body>
-        {% block content %}
+<head>
+    {% leaflet_js %}
+    {% leaflet_css %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- jvectormap -->
+    <link rel="stylesheet" href="{% static 'bower_components/jvectormap/jquery-jvectormap.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static "css/hotelview.css" %}">
+    <link href="http://cdn.pydata.org/bokeh/release/bokeh-1.3.4.min.css" rel="stylesheet" type="text/css">
+    <link href="http://cdn.pydata.org/bokeh/release/bokeh-widgets-1.3.4.min.css" rel="stylesheet" type="text/css">
+    <script src="http://cdn.pydata.org/bokeh/release/bokeh-1.3.4.min.js"></script>
+    <script src="http://cdn.pydata.org/bokeh/release/bokeh-widgets-1.3.4.min.js"></script>
+    <!-- jvectormap  -->
+    <script src="{% static 'plugins/jvectormap/jquery-jvectormap-1.2.2.min.js' %}"></script>
+    <script src="{% static 'plugins/jvectormap/jquery-jvectormap-world-mill-en.js' %}"></script>
+    <script type="text/javascript">
+        function map_init_basic(map, options) {
+            L.marker({{ marker }}).addTo(map);
+            }
+    </script>
+    <!-- {{ overall_script | safe }} -->
+    <!-- {{ q_script | safe }} -->
+    {{ total_script | safe }}
+</head>
+
+
+<body>
+
+
+
+
+    <div id='cssmenu'>
+        <ul>
+            <div id="left">
+                <li><a href="/admin/">Admin Dashboard</a></li>
+                <li><a href="admin/complaint/complaint/"> Complaints</a></li>
+                <li><a href="admin/reviews/review/"> Review</a></li>
+
+                <li><a href="admin/hotel/hotel/"> Hotels</a></li>
+            </div>
+
+            <div id="right">
+                <span class="hidden-xs">Hello, {{user.username}}</span>
+                <li> <a href="/admin/logout/">Log out</a></li>
+            </div>
+
+        </ul>
+    </div>
+
+
+    {% block content %}
+    <div class="hotel">
 
         {% for instance in hotel_detail %}
-            {%if id == instance.id %}
-                <p> {{instance.id }}-<a href='{{ instance.get_absolute_url }}'> {{ instance.hotel_name}}</a></p>
-                Hotel ID : <h1> {{instance.id}} </h1>
-                Hotel Name<h1> {{instance.hotel_name}} </h1>
-                Address: <h1> {{instance.address}} </h1>
-        
-            {%endif%}
+        {%if id == instance.id %}
+        <p> {{instance.id }}-<a href='{{ instance.get_absolute_url }}'> {{ instance.hotel_name}}</a></p>
+        Hotel ID : <h1> {{instance.id}} </h1>
+        Hotel Name<h1> {{instance.hotel_name}} </h1>
+        Address: <h1> {{instance.address}} </h1>
+
+        {%endif%}
         {% endfor%}
-        <div>
+
+
+    </div>
+    <div>
         {% leaflet_map "yourmap" callback="window.map_init_basic" %}
-        </div>
-        {{ overall_div | safe }}
-        {{ questions_div | safe }}
+    </div>
 
-        {%endblock%}
+    {{ overall_div | safe }}
+    <div>
+    {{ questions_div.0 | safe }}
+    </div>
 
-    </body>
+    <div>
+    {{ questions_div.1 | safe }}
+    </div>
+    </div>
+
+    {%endblock%}
+
+</body>
+
 </html>

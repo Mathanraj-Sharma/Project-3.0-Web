@@ -22,8 +22,10 @@ def hotel_list_view(request,id):
     # graphs for each questions
     questions_script, questions_div = get_question_answer_graph(id)
 
+    # print(questions_div)
+
     total_script = overall_script + questions_script
-    
+
     context = {
         'id': hotelspecific,
         'hotel_detail': hotel_detail,
@@ -62,10 +64,10 @@ def get_question_answer_graph(hotel_id):
     ]
 
     questions_script = ''
-    questions_div = ''
+    questions_div = []
     for q in questions_temp:
         q_script, q_div = get_question_pie(hotel_id, q)
         questions_script = questions_script + q_script
-        questions_div = questions_div + q_div
+        questions_div.append(q_div)
 
     return [questions_script, questions_div]

@@ -1,5 +1,4 @@
 from django.db import models
-from django_mysql.models import JSONField
 from hotel.models import hotel
 from mobileusers.models import mobileuser
 from django_forcedfields import TimestampField
@@ -11,10 +10,10 @@ class review(models.Model):
     # queAndAnsr = JSONField()
     qa = models.TextField()
     hotel = models.ForeignKey(hotel, on_delete = models.DO_NOTHING)
-    # geo_tag = models.TextField()
+    geo_tag = models.TextField()
     device_signature= models.TextField()
     created_at = TimestampField(auto_now_add=True)
     updated_at = TimestampField(auto_now=True)
 
     class Meta:
-        db_table = 'review'
+        db_table = 'reviews'

@@ -16,4 +16,5 @@ class hotel(models.Model):
         return f"/hotel/hotel/{self.id}/"
  
     class Meta:
-        db_table = 'hotel'
+        db_table = 'hotels'
+        
