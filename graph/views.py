@@ -1,7 +1,6 @@
 from django.shortcuts import render, render_to_response
 from bokeh.plotting import figure, output_file, show
 from bokeh.embed import components
-from frontend.views import get_total_review_score
 from reviews.models import review
 from math import pi
 import pandas as pd
@@ -118,3 +117,47 @@ def get_question_pie(hotel_id, question):
 
     return [script,div]
 
+
+def get_total_review_score(hotel_id):
+    """
+        This function gets and hotel id as input and returns total review score
+    """
+    total = 0
+    reviews = review.objects.filter(hotel = hotel_id).values('id')
+    
+    for i in reviews:
+        total = total + get_review_score(review.objects.filter(id = i['id']))
+       
+    expected_total = len(reviews) * 35
+    score = (total/expected_total) * 5
+
+    # print(score)
+    return score
+
+def get_review_score(review):
+    """
+        This method will get a single review as input and returns the score for it
+    """
+    grade_A = ['Very Good', 'Very Pleasant','Very Nice','Yes', 'Very Tasty']
+    grade_B = ['Good', 'Pleasant', 'Nice']
+    grade_C = ['Moderate', 'Neutral']
+    grade_D = ['Bad']
+    grade_E = ['Worse','Very Bad','No']
+
+    score = 0
+    data = ast.literal_eval(review.values('qa')[0]['qa'])
+    for value in data:
+        temp = value['answer']
+        if temp in grade_A:
+            score += 5
+        elif temp in grade_B:
+            score += 4
+        elif temp in grade_C:
+            score += 3
+        elif temp in grade_D:
+            score += 2
+        else:
+            score += 0
+
+    # print(f"Score = {score}")
+    return score

@@ -56,12 +56,12 @@ def get_question_answer_graph(hotel_id):
     this function will get a hotel_id as an input and return pie graphs for all
     questions and answers
     """
-    questions_temp = [
-        "How Often Do You Dine with Us?",
-        "How good was the outside environment of the restaurant?",
-        "What Did You Like Best About Our Food and Services?",
-        "How Quick or Adequate Was the Speed of Service?"
-    ]
+    questions = question.objects.values('question')
+    questions_temp = []
+    for q in questions:
+        questions_temp.append(q['question'])
+
+    print(questions_temp)
 
     questions_script = ''
     questions_div = []
@@ -71,3 +71,5 @@ def get_question_answer_graph(hotel_id):
         questions_div.append(q_div)
 
     return [questions_script, questions_div]
+
+
