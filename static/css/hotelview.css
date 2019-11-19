@@ -1,50 +1,185 @@
-#customers {
-    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
-    border-collapse: collapse;
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:700);
+#cssmenu {
+  background: #800000;
+  width: auto;
+}
+#cssmenu ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  line-height: 1;
+  display: block;
+  zoom: 1;
+}
+#cssmenu span{
+	color: #ffffff;
+	font-size: 14px; 
+}
+#right, #left{
+	display: inline;
+}
+#right{
+	float:right;
+}
+#cssmenu ul:after {
+  content: " ";
+  display: block;
+  font-size: 0;
+  height: 0;
+  clear: both;
+  visibility: hidden;
+}
+#cssmenu ul li {
+  display: inline-block;
+  padding: 5px;
+  margin-left: 10px;
+  margin-right:10px;
+}
+#cssmenu.align-right ul li {
+  float: right;
+}
+#cssmenu.align-center ul {
+  text-align: center;
+}
+#cssmenu ul li a {
+  color: #ffffff;
+  text-decoration: none;
+  display: block;
+  padding: 15px 25px;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 14px;
+  position: relative;
+  -webkit-transition: color .25s;
+  -moz-transition: color .25s;
+  -ms-transition: color .25s;
+  -o-transition: color .25s;
+  transition: color .25s;
+}
+#cssmenu ul li a:hover {
+  color: #333333;
+}
+#cssmenu ul li a:hover:before {
+  width: 100%;
+}
+#cssmenu ul li a:after {
+  content: "";
+  display: block;
+  position: absolute;
+  right: -3px;
+  top: 19px;
+  height: 6px;
+  width: 6px;
+  background: #ffffff;
+  opacity: .5;
+}
+#cssmenu ul li a:before {
+  content: "";
+  display: block;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 3px;
+  width: 0;
+  background: #333333;
+  -webkit-transition: width .25s;
+  -moz-transition: width .25s;
+  -ms-transition: width .25s;
+  -o-transition: width .25s;
+  transition: width .25s;
+}
+#cssmenu ul li.last > a:after,
+#cssmenu ul li:last-child > a:after {
+  display: none;
+}
+#cssmenu ul li.active a {
+  color: #333333;
+}
+#cssmenu ul li.active a:before {
+  width: 100%;
+}
+#cssmenu.align-right li.last > a:after,
+#cssmenu.align-right li:last-child > a:after {
+  display: block;
+}
+#cssmenu.align-right li:first-child a:after {
+  display: none;
+}
+@media screen and (max-width: 768px) {
+  #cssmenu ul li {
+    float: none;
+    display: block;
+  }
+  #cssmenu ul li a {
     width: 100%;
-    margin-bottom: 10px;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    border-bottom: 1px solid #fb998c;
   }
-  
-  #customers td, #customers th {
-    border: 1px solid #ddd;
-    padding: 8px;
+  #cssmenu ul li.last > a,
+  #cssmenu ul li:last-child > a {
+    border: 0;
   }
-  
-  #customers tr:nth-child(even){background-color: #f2f2f2;
+  #cssmenu ul li a:after {
+    display: none;
+  }
+  #cssmenu ul li a:before {
+    display: none;
+  }
 }
-
-#customers td {
-    background-color: #E5FFCC;
-
-}
-  
-  #customers tr:hover {background-color: #ddd;}
-  
-  #customers th {
-    padding-top: 12px;
-    padding-bottom: 12px;
-    text-align: left;
-    background-color: #4CAF50;
-    color: white;
-  }
-
+ 
   p{
 
     background-color: #f2f2f2;
     padding : 5px,5px,5px,5px;
   }
-  #hotel{
+.hotel{
     background-color: #ddd;
-    margin-left:25px;
-    margin-right: 25px;
+    margin-top:30px;
+    width: auto;
+    margin-bottom:30px;
+  }
+ #l{
+	  width:40%;
+	  float : left;
+	  background-color:#ddd;
+	  opacity: 0.3;
+	  color:blue;
+	  font-family: "Times New Roman", Times, serif;
   }
 
-  .bk-root{
-
-    display: inline;
+ #r{
+	width:60%;
+	float:right;
+	background-color:#ddd;
+	opacity: 0.3;
+    color:blue;
+    font-family: "Times New Roman", Times, serif;
   }
 
-  body {
+.graph{
+     background-color:rgba(153, 214, 255, 0.5);
+     margin-top: 60px;
+     display: inline-block;
+     background-color:rgba(255,255,153,0.5);
+     }
 
+.map{
+    margin-top: 50px;
+      }
+
+.graph-main {
+    margin-left:60px;
+ 	margin-right:60px;
+    float:left;
+
+  }
+ 
+body, html {
     background-image:url("../images/Pavilion-Lounge-Bar-hi-res-14-maxi2917.jpg");
+    background-repeat: no-repeat;
+    height: 100%;
+    background-size: cover;
   }

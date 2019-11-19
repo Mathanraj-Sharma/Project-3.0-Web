@@ -26,29 +26,66 @@
         <!-- {{ q_script | safe }} -->
         {{ total_script | safe }}
     </head>
-    {% block title %}
-    <title>Home</title>
-    {% endblock %}
+	
+<body>
+     <div id='cssmenu'>
+        <ul>
+            <div id="left">
+                <li><a href="/admin/">Admin Dashboard</a></li>
+                <li><a href="admin/complaint/complaint/"> Complaints</a></li>
+                <li><a href="admin/reviews/review/"> Review</a></li>
+                <li><a href="admin/hotel/hotel/"> Hotels</a></li>
+            </div>
 
-    <body>
-        {% block content %}
+            <div id="right">
+                <span class="hidden-xs">Hello, {{user.username}}</span>
+                <li> <a href="/admin/logout/">Log out</a></li>
+            </div>
+        </ul>
+    </div>
+
+
+    {% block content %}
+
+    <div class="hotel">
 
         {% for instance in hotel_detail %}
-            {%if id == instance.id %}
-                <p> {{instance.id }}-<a href='{{ instance.get_absolute_url }}'> {{ instance.hotel_name}}</a></p>
-                Hotel ID : <h1> {{instance.id}} </h1>
-                Hotel Name<h1> {{instance.hotel_name}} </h1>
-                Address: <h1> {{instance.address}} </h1>
-        
-            {%endif%}
-        {% endfor%}
-        <div>
-        {% leaflet_map "yourmap" callback="window.map_init_basic" %}
+        {%if id == instance.id %}
+
+       <a href='{{ instance.get_absolute_url }}'> </a>
+
+        <div id = "l">
+          <h1> {{instance.hotel_name}} </h1>
         </div>
-        {{ overall_div | safe }}
-        {{ questions_div | safe }}
 
-        {%endblock%}
+        <div id = "r">
+          <h1> {{instance.address}} </h1>
+        </div>
 
-    </body>
+        {%endif%}
+        {% endfor%}
+    </div>
+   
+	<div class = "graph">
+		<div class= "graph-main">
+			{{ overall_div | safe }}
+		</div>
+		
+		<div class = "graph-main">
+			{{ questions_div.0 | safe }}
+		</div>
+
+		<div class = "graph-main">}
+		    {{ questions_div.1 | safe }}
+		</div>
+	</div>
+
+	<div class= "map">
+			{% leaflet_map "yourmap" callback="window.map_init_basic" %}
+	</div>
+	   
+    {%endblock%}
+
+</body>
+
 </html>
