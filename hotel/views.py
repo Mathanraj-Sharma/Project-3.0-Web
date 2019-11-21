@@ -15,6 +15,7 @@ def hotel_list_view(request,id):
     hotel_detail = hotel.objects.all()
     hotelspecific = id
     marker = get_marker(id)
+    review_count = review.objects.filter(hotel_id = hotelspecific).count()
 
     # graph for overall score
     overall_script, overall_div = get_total_score_doughnut(id)
@@ -30,6 +31,7 @@ def hotel_list_view(request,id):
         'id': hotelspecific,
         'hotel_detail': hotel_detail,
         'marker' : marker,
+        'review_count': review_count,
         'overall_div' : overall_div,
         'questions_div': questions_div,
         'total_script' :total_script

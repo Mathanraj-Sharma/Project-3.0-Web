@@ -72,6 +72,10 @@
         {% leaflet_map "yourmap" callback="window.map_init_basic" %}     
     </div>
     
+    <div id = 'total_reviews' style="font-size:24px; font-weight:bold;">
+       <p>Total Reviews =  {{ review_count }}</p>
+    </div>
+
     <div class = "graph">
         <div class= "graph-main">
             {{ overall_div | safe }}
