@@ -146,5 +146,5 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'assets')
 
 LEAFLET_CONFIG = {
     'DEFAULT_CENTER': (9.6615, 80.0255),
-    'DEFAULT_ZOOM': 10
+    'DEFAULT_ZOOM': 12
 }
