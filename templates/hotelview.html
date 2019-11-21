@@ -24,23 +24,17 @@
             L.marker({{ marker }}).addTo(map);
             }
     </script>
-    <!-- {{ overall_script | safe }} -->
-    <!-- {{ q_script | safe }} -->
     {{ total_script | safe }}
 </head>
 
 
 <body>
-
-
-
-
     <div id='cssmenu'>
         <ul>
             <div id="left">
                 <li><a href="/admin/">Admin Dashboard</a></li>
-                <li><a href="admin/complaint/complaint/"> Complaints</a></li>
-                <li><a href="admin/reviews/review/"> Review</a></li>
+                <li><a href="/admin/complaint/complaint/"> Complaints</a></li>
+                <li><a href="/admin/reviews/review/"> Review</a></li>
 
                 <li><a href="admin/hotel/hotel/"> Hotels</a></li>
             </div>
@@ -59,32 +53,36 @@
 
         {% for instance in hotel_detail %}
         {%if id == instance.id %}
-        <p> {{instance.id }}-<a href='{{ instance.get_absolute_url }}'> {{ instance.hotel_name}}</a></p>
-        Hotel ID : <h1> {{instance.id}} </h1>
-        Hotel Name<h1> {{instance.hotel_name}} </h1>
-        Address: <h1> {{instance.address}} </h1>
+
+       <a href='{{ instance.get_absolute_url }}'> </a>
+
+        <div id = "l">
+          <h1> {{instance.hotel_name}} </h1>
+        </div>
+
+        <div id = "r">
+          <h1> {{instance.address}} </h1>
+        </div>
 
         {%endif%}
         {% endfor%}
-
-
     </div>
-    <div>
-        {% leaflet_map "yourmap" callback="window.map_init_basic" %}
+   
+    <div class="map">
+        {% leaflet_map "yourmap" callback="window.map_init_basic" %}     
     </div>
-
-    {{ overall_div | safe }}
-    <div>
-    {{ questions_div.0 | safe }}
+    
+    <div class = "graph">
+        <div class= "graph-main">
+            {{ overall_div | safe }}
+        </div>
+        {% for div in questions_div %}
+            <div class = "graph-main">
+                {{ div | safe }}
+            </div>
+        {% endfor %}
     </div>
-
-    <div>
-    {{ questions_div.1 | safe }}
-    </div>
-    </div>
-
     {%endblock%}
-
 </body>
 
 </html>

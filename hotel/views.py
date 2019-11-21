@@ -61,8 +61,6 @@ def get_question_answer_graph(hotel_id):
     for q in questions:
         questions_temp.append(q['question'])
 
-    print(questions_temp)
-
     questions_script = ''
     questions_div = []
     for q in questions_temp:
