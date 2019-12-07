@@ -70,4 +70,4 @@ dependencies:
     - geographiclib==1.50
     - geopy==1.20.0
     - jinja-to-js==3.2.3
-prefix: /home/mr/anaconda3/envs/feedback
+
